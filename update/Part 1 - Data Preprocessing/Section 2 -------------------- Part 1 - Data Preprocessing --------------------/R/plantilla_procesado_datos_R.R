@@ -21,3 +21,19 @@ dataset$Age = ifelse(is.na(dataset$Age),
 dataset$Salary = ifelse(is.na(dataset$Salary),
                      ave(dataset$Salary, FUN = function(x) mean(x, na.rm = TRUE)),
                      dataset$Salary)
+
+# Codificar variables categoricas
+
+# conversion de variables categoricas a factores
+# c() es la sintaxis de vector en R, en Python es con []
+
+dataset$Country = factor(dataset$Country,
+                         levels = c("France", "Germany", "Spain"),
+                         labels = c(0, 1, 2))
+
+dataset$Purchased = factor(dataset$Purchased,
+                           levels = c("No", "Yes"),
+                           labels = c(0, 1))
+
+
+

@@ -39,7 +39,20 @@ imputer = imputer.fit(X[:, 1:3])    # usamos este obj para arreglar la matriz X 
                                     # aplicamos fit para aplicar una funcion a un obj que queremos arreglar en este caso X
 X[:, 1:3] = imputer.transform(X[:, 1:3])    # aplicamos la media a todos los datos seleccionados
 
+# Codificar datos categoricos
+# Codificacion de la variable independiente X
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 
+# Se aplica OneHotEncoder a la primera clmn 
+
+ct = ColumnTransformer(transformers=[('cat', OneHotEncoder(), [0])], 
+                       remainder='passthrough')
+X = np.array(ct.fit_transform(X))        # Se transforma X y se convierte en un array de NumPy np
+
+# Codificacion de la variable dependiente y
+le = LabelEncoder()
+y = le.fit_transform(y)
 
 
 
