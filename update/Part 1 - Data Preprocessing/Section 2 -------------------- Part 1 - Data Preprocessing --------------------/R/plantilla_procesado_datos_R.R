@@ -2,6 +2,7 @@
 # Importar el Dataset 
 
 dataset = read.csv("Data.csv")
+#dataset = dataset[, 2:3]   # En caso de que se quiera cargar un subconjunto del dataset og
 
 # Tratamiento de los valores NA
 # con $ se accede a un valor del dataframe
@@ -61,3 +62,5 @@ testing_set[,2:3] = scale(testing_set[,2:3])  # en R no hace falta poner [:, ] p
 # ya que los paises los transformamos en numeros, pero estos son tratados como strings, por tanto
 # las columnas de factores como country no se pueden ni norm ni estandr
 # para solucionar esto se debe hacer que scale() tome las clmns 2 y 3 como se muestra en los corchetes
+
+# con Ctrl + Shift + C se comenta todo lo seleccionado
