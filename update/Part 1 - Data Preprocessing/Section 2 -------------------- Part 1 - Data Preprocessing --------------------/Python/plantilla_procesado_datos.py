@@ -68,6 +68,21 @@ from sklearn.model_selection import train_test_split
 # Se realiza la división de manera que me devuelve 4 vars
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
+#%%
+
+# Escalado de variables
+
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)   # Se escala automáticamente el cjto de entrenamiento
+X_test = sc_X.transform(X_test)
+
+# IMPORTANTE! X_test se escala solamente aplicando la funcion transform, ya que el escalador detecto la transformacion 
+# que tenia que hacer con los datos de X_train, de esta manera nos aseguramos de que el escalado sea
+# igual para X_test y X_train, y que queden escalados del mismo modo, con la misma formula
+
+
+
 
 
 

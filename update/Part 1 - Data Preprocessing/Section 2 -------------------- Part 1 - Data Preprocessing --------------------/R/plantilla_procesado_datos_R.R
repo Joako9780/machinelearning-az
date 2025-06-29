@@ -37,8 +37,8 @@ dataset$Purchased = factor(dataset$Purchased,
 
 # Dividir los datos en conjunto de entrenamiento y de test
 
-install.packages("caTools")
-library(caTools)
+#install.packages("caTools")
+#library(caTools)
 
 # con SplitRatio se indica el porcentaje para entrenar, contrario a py
 # a sample.split se le da la variable que se desea predecir
@@ -51,13 +51,13 @@ split = sample.split(dataset$Purchased, SplitRatio = 0.8)
 training_set = subset(dataset, split == TRUE)
 testing_set = subset(dataset, split == FALSE)
 
+# Escalado de valores
 
+training_set[,2:3] = scale(training_set[,2:3]) # redefinimos aplicando la funcion scale
+testing_set[,2:3] = scale(testing_set[,2:3])  # en R no hace falta poner [:, ] para indicar que son todas las filas, dejando vacio es suficiente
 
-
-
-
-
-
-
-
-
+# La fn scale() utiliza por detras la fn colMeans() que hace la media de los datos por columnas,
+# por lo tanto requiere que todos los valores de x sean numeros, se crea el fallo al ejecutar esto
+# ya que los paises los transformamos en numeros, pero estos son tratados como strings, por tanto
+# las columnas de factores como country no se pueden ni norm ni estandr
+# para solucionar esto se debe hacer que scale() tome las clmns 2 y 3 como se muestra en los corchetes
